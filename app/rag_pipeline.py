@@ -1,46 +1,48 @@
-from sentence_transformers import SentenceTransformer
-import faiss
 import os
+import faiss
 import pickle
 from typing import List, Dict
+from sentence_transformers import SentenceTransformer
 from app.document_loader import load_documents
 
+from openai import OpenAI
+from dotenv import load_dotenv
 
+
+load_dotenv()
+
+# Load OpenRouter API
+client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key=os.getenv("OPENROUTER_API_KEY"),
+)
+
+# Paths
 FAISS_INDEX_PATH = "vector_store/index.faiss"
 METADATA_PATH = "vector_store/metadata.pkl"
 
-
-model = SentenceTransformer("all-MiniLM-L6-v2") 
+# Load embedding model
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def build_faiss_index():
-    
-    print("🔄 Loading and embedding documents...")
     documents = load_documents("data/legal_docs")
     texts = [doc["text"] for doc in documents]
-
-    # Embed all chunks
     embeddings = model.encode(texts, show_progress_bar=True)
 
-    # Create FAISS index
-    dim = len(embeddings[0])  # usually 384 for MiniLM
+    dim = len(embeddings[0])
     index = faiss.IndexFlatL2(dim)
     index.add(embeddings)
 
-    # Save index and metadata
     os.makedirs("vector_store", exist_ok=True)
     faiss.write_index(index, FAISS_INDEX_PATH)
     with open(METADATA_PATH, "wb") as f:
         pickle.dump(documents, f)
 
-    print("✅ FAISS index created and saved.")
-
 def search_similar_chunks(query: str, top_k: int = 5) -> List[Dict]:
-    
     index = faiss.read_index(FAISS_INDEX_PATH)
     with open(METADATA_PATH, "rb") as f:
         metadata = pickle.load(f)
 
-    # Embed the query
     query_vec = model.encode([query])
     distances, indices = index.search(query_vec, top_k)
 
@@ -54,14 +56,25 @@ def search_similar_chunks(query: str, top_k: int = 5) -> List[Dict]:
     return results
 
 def handle_query(query: str) -> Dict:
-   
     retrieved_chunks = search_similar_chunks(query)
+    context = "\n\n".join([f"{c['text']}" for c in retrieved_chunks])
 
-    # For now, just concatenate chunks (you'll replace this with real generation)
-    combined_context = "\n\n".join([c["text"] for c in retrieved_chunks])
-    fake_answer = f"Based on legal documents, here is the generated answer:\n\n{combined_context[:500]}..."
+    prompt = f"""
+You are a legal assistant. Based on the following legal text snippets, answer the user's question.
+Always stay factual. If unsure, say "not found".
+
+Legal Snippets:
+{context}
+
+User Question: {query}
+"""
+
+    response = client.chat.completions.create(
+        model="mistralai/mistral-7b-instruct",  
+        messages=[{"role": "user", "content": prompt}],
+    )
 
     return {
-        "answer": fake_answer,
+        "answer": response.choices[0].message.content.strip(),
         "citations": retrieved_chunks
     }
