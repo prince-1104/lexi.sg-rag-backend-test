@@ -13,6 +13,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+allow_origins=[
+    "http://localhost:5173",
+    "https://lexilegal.doptonin.in",
+
+],
+
+
 class QueryRequest(BaseModel):
     query: str
 

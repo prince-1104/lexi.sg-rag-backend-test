@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useState } from "react";
 
 interface Citation {
@@ -18,7 +17,7 @@ export default function App() {
 
   const askQuery = async () => {
     setLoading(true);
-    const res = await fetch("http://localhost:8000/query", {
+    const res = await fetch("https://lexilegal.doptonin.in", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
