@@ -18,3 +18,5 @@ vector_store/
 .DS_Store
 .vscode/
 .idea/
+
+.env
