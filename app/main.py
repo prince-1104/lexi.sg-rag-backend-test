@@ -7,17 +7,15 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  
+    allow_origins=[
+        "http://localhost:5173",             
+        "https://lexilegal-noober2026-8045s-projects.vercel.app/",  
+        "https://lexilegal.doptonin.in",       
+    ],
     allow_credentials=True,
-    allow_methods=["*"],   
+    allow_methods=["*"],
     allow_headers=["*"],
 )
-
-allow_origins=[
-    "http://localhost:5173",
-    "https://lexilegal.doptonin.in",
-
-],
 
 
 class QueryRequest(BaseModel):
