@@ -17,7 +17,7 @@ export default function App() {
 
   const askQuery = async () => {
     setLoading(true);
-    const res = await fetch("https://lexilegal.doptonin.in", {
+    const res = await fetch("https://lexilegal.doptonin.in/query", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
