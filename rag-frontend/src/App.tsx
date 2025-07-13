@@ -17,6 +17,12 @@ export default function App() {
 
   const askQuery = async () => {
     setLoading(true);
+    const url = `${import.meta.env.VITE_BACKEND_URL}/query`;
+    console.log("🔍 Hitting backend at:", url);  // 👈 this logs the final URL
+  
+
+    console.log("🔍 Sending POST to:", `${import.meta.env.VITE_BACKEND_URL}/query`);
+
     const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/query`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
