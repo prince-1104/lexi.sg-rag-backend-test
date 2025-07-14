@@ -1,8 +1,37 @@
+# 🧠 lexi.sg-rag-backend-test 
+
+This is the FastAPI-based Retrieval-Augmented Generation (RAG) backend for Lexi, a legal assistant that answers legal queries using semantic search over provided legal documents and LLM-based response generation.
+
+> ✅ Hosted at: [https://lexi-sg-rag-backend-test-caze.onrender.com](https://lexi-sg-rag-backend-test-caze.onrender.com)  
+> 🌐 Frontend: [https://lexi-sg-rag-backend-test-psi.vercel.app](https://lexi-sg-rag-backend-test-psi.vercel.app)
+
+---
+⚠️ Due to Render's free tier limitations, the server sleeps after a few minutes of inactivity.
+
+It may take 10–30 seconds to "cold start" when first accessed after idle time.
+
+If you encounter a delay or network error, please wait and retry your query.
+
+---
+
+## ✅ Features
+
+- `/query` POST endpoint to ask legal questions
+- Embedding-based similarity search using **FAISS**
+- Text extraction from legal documents
+- Uses **OpenRouter + open-source LLMs** for final answer generation
+- Fully open-source and reproducible
+
+
+
+
+
 ## 🛠️ Setup
 
-1. Clone the repo:
+### 1. Clone the Repository
+
 ```bash
-git clone https://github.com/yourname/lexi.sg-rag-backend-test
+git clone https://github.com/prince-1104/lexi.sg-rag-backend-test.git
 cd lexi.sg-rag-backend-test
 ```
 
@@ -15,7 +44,7 @@ pip install -r requirements.txt
 ## 💡 Features
 
 - ✅ FastAPI backend
-- ✅ Embedding with `sentence-transformers`
+- ✅ Embedding with 
 - ✅ Vector store using FAISS
 - ✅ Answer generation using OpenRouter 
 - ✅ Returns citations with source text + filename
@@ -37,4 +66,7 @@ pip install -r requirements.txt
     }
   ]
 }
+
+
+
 
