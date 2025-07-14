@@ -41,15 +41,6 @@ venv\Scripts\activate
 pip install -r requirements.txt
 
 
-## 💡 Features
-
-- ✅ FastAPI backend
-- ✅ Embedding with 
-- ✅ Vector store using FAISS
-- ✅ Answer generation using OpenRouter 
-- ✅ Returns citations with source text + filename
-- ✅ React frontend like ChatGPT (optional)
-
 
 ## Sample Query
 {
