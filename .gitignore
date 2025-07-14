@@ -1,18 +1,7 @@
-# Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-
-# Virtual env
 venv/
-env/
-
-# FAISS / Chroma vector store
-
-# OS & IDE
-.DS_Store
-.vscode/
-.idea/
-
+node_modules/
 .env
+*.faiss
+*.pkl

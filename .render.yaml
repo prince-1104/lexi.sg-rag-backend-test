@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: lexi-legal-backend
+    env: python
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: ./.render/start.sh
+    branch: main
+    plan: free
+    autoDeploy: true
