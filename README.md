@@ -3,7 +3,7 @@
 This is the FastAPI-based Retrieval-Augmented Generation (RAG) backend for Lexi, a legal assistant that answers legal queries using semantic search over provided legal documents and LLM-based response generation.
 
 > ✅ Hosted at: [https://lexi-sg-rag-backend-test-caze.onrender.com](https://lexi-sg-rag-backend-test-caze.onrender.com)  
-> 🌐 Frontend: [https://lexi-sg-rag-backend-test-psi.vercel.app](https://lexilegal.doptonin.in/)
+> 🌐 Frontend: [https://lexilegal.doptonin.in/](https://lexilegal.doptonin.in/)
 
 ---
 ⚠️ Due to Render's free tier limitations, the server sleeps after a few minutes of inactivity.
