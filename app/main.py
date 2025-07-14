@@ -20,6 +20,11 @@ app.add_middleware(
 class QueryRequest(BaseModel):
     query: str
 
+@app.get("/")
+async def root():
+    return {"message": "Welcome to Lexi Legal!"}
+
+
 @app.post("/query")
 async def query_rag(req: QueryRequest):
     result = handle_query(req.query)
