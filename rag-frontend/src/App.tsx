@@ -23,7 +23,7 @@ export default function App() {
 
     console.log("🔍 Sending POST to:", `${import.meta.env.VITE_BACKEND_URL}/query`);
 
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/query`, {
+    const res = await fetch("https://lexi-sg-rag-backend-test-caze.onrender.com/query", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
