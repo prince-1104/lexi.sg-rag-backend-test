@@ -37,6 +37,9 @@ export default function App() {
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-2xl mx-auto bg-white shadow p-6 rounded-xl space-y-4">
         <h1 className="text-2xl font-bold text-gray-800">🧠 Legal Assistant</h1>
+       <h4 className="text-2xl font-bold text-gray-800">
+  Please wait a moment ⏳. Responses may take a few minutes because our backend is hosted on Render’s free tier 🕒.
+</h4>
 
         <textarea
           rows={3}
